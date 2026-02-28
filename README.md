@@ -1,60 +1,28 @@
-A full-stack interactive dashboard application showcasing modern web development practices and architectural patterns.
+import { useState } from 'react';
 
-## ✨ Features
+interface NavbarProps {
+  user: any;
+  onLogout: () => void;
+}
 
-- **Real-time Data Visualization** - Interactive charts and analytics
-- **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
-- **RESTful API** - Well-documented backend API
-- **Authentication** - Secure user session management
-- **Modern Stack** - React 18, TypeScript, Express.js, MongoDB
-- **Docker Support** - Easy deployment with Docker Compose
+export default function Navbar({ user, onLogout }: NavbarProps) {
+  const [showMenu, setShowMenu] = useState(false);
 
-## 🚀 Tech Stack
-
-### Frontend
-- React 18 with TypeScript
-- Tailwind CSS for styling
-- Chart.js for data visualization
-- Axios for API calls
-- Vite for fast development
-
-### Backend
-- Node.js & Express.js
-- MongoDB for data persistence
-- JWT for authentication
-- Mongoose for schema validation
-
-### DevOps
-- Docker & Docker Compose
-- Environment-based configuration
-- Production-ready setup
-
-## 📦 Prerequisites
-
-- Node.js 18+
-- Docker & Docker Compose (optional)
-- MongoDB (or use Docker)
-
-## 🛠️ Installation
-
-### Option 1: Local Setup
-
-```bash
-# Install frontend dependencies
-cd frontend
-npm install
-
-# Install backend dependencies
-cd ../backend
-npm install
-
-# Start MongoDB locally
-# Update MONGO_URI in backend/.env if needed
-
-# Terminal 1: Start backend
-cd backend
-npm run dev
-
-# Terminal 2: Start frontend
-cd frontend
-npm run dev
+  return (
+    <nav className="bg-gray-900 text-white shadow-lg">
+      <div className="max-w-6xl mx-auto px-8 py-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold">📊 Portfolio Dashboard</h1>
+        
+        <div className="flex items-center gap-4">
+          <span className="text-gray-300">{user.username}</span>
+          <button
+            onClick={onLogout}
+            className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
+}
